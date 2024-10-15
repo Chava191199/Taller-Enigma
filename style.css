@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0e0e0; /* Gris claro como fondo */
+    margin: 0;
+    padding: 20px;
+    display: flex; /* Usar flexbox para centrar */
+    flex-direction: column; /* Colocar los elementos en columna */
+    align-items: center; /* Centramos horizontalmente */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #5e35b1; /* Color del logo */
+}
+
+h2, h3 {
+    color: #5e35b1; /* Color del logo */
+}
+
+form {
+    background-color: white; /* Fondo blanco para el formulario */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    max-width: 400px; /* Limitar el ancho del formulario */
+    width: 100%; /* Para que ocupe el 100% del contenedor en móviles */
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #5e35b1; /* Color del botón basado en el logo */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* Botón ocupa todo el ancho */
+}
+
+button:hover {
+    background-color: #4a2b91; /* Color más oscuro al pasar el mouse */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#medication-form {
+    margin-top: 20px;
+}
+
+#dispenserBtn {
+    margin-top: 20px;
+    display: block;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2, h3 {
+        font-size: 20px;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    button {
+        padding: 8px;
+    }
+}

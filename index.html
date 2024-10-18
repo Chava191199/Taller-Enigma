@@ -22,8 +22,9 @@
             <input type="password" id="loginPassword" name="loginPassword" required>
 
             <button type="submit">Iniciar Sesión</button>
+            <button onclick="showRegister()">¿No tienes una cuenta? Regístrate</button>
         </form>
-        <button onclick="showRegister()">¿No tienes una cuenta? Regístrate</button>
+  
     </div>
 
     <div id="register" style="display:none;">
@@ -47,7 +48,7 @@
     </div>
 
     <div id="dashboard" style="display:none;">
-        <h2>Bienvenido al Dashboard</h2>
+        <h2>Bienvenido</h2>
         <button onclick="toggleMedicationForm()">Agregar Medicamento</button>
 
         <div id="medication-form" style="display:none;">

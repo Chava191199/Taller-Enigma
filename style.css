@@ -1,11 +1,11 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #e0e0e0; /* Gris claro como fondo */
+    background-color: #4dacf5; /* Azul claro como fondo */
     margin: 0;
     padding: 20px;
-    display: flex; /* Usar flexbox para centrar */
-    flex-direction: column; /* Colocar los elementos en columna */
-    align-items: center; /* Centramos horizontalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header {
@@ -14,21 +14,22 @@ header {
 }
 
 h1 {
-    color: #5e35b1; /* Color del logo */
+    color: #004d40; /* Verde oscuro para el logo */
 }
 
 h2, h3 {
-    color: #5e35b1; /* Color del logo */
+    color: #00796b; /* Verde medio para los títulos */
+    text-align: center;
 }
 
 form {
-    background-color: white; /* Fondo blanco para el formulario */
+    background-color: white;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    max-width: 400px; /* Limitar el ancho del formulario */
-    width: 100%; /* Para que ocupe el 100% del contenedor en móviles */
+    max-width: 400px;
+    width: 100%;
 }
 
 label {
@@ -41,7 +42,7 @@ input[type="email"],
 input[type="password"],
 input[type="number"],
 input[type="date"] {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -49,17 +50,33 @@ input[type="date"] {
 }
 
 button {
-    background-color: #5e35b1; /* Color del botón basado en el logo */
+    background-color: #42983a; /* Verde para los botones */
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%; /* Botón ocupa todo el ancho */
+    width: 95%;
+    margin-top: 10px; /* Añade margen superior para los botones */
 }
 
 button:hover {
-    background-color: #4a2b91; /* Color más oscuro al pasar el mouse */
+    background-color: #15a198; /* Verde más oscuro al pasar el mouse */
+}
+
+/* Botón "¿No tienes una cuenta? Regístrate" con margen superior */
+#loginForm + button {
+    margin-top: 15px; /* Añade un margen para separarlo del botón anterior */
+    background-color: transparent;
+    color: #42983a;
+    border: none;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+#loginForm + button:hover {
+    color: #15a198; /* Verde más oscuro al pasar el mouse */
 }
 
 ul {

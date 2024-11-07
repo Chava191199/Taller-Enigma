@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #4dacf5; /* Azul claro como fondo */
+    background-color: #f41212; /* Azul claro como fondo */
     margin: 0;
     padding: 20px;
     display: flex;
@@ -14,11 +14,11 @@ header {
 }
 
 h1 {
-    color: #004d40; /* Verde oscuro para el logo */
+    color: #f6f9f8; /* Verde oscuro para el logo */
 }
 
-h2, h3 {
-    color: #00796b; /* Verde medio para los títulos */
+h2, h3, h4 {
+    color: #f3eded; /* Verde medio para los títulos */
     text-align: center;
 }
 
@@ -50,7 +50,7 @@ input[type="date"] {
 }
 
 button {
-    background-color: #42983a; /* Verde para los botones */
+    background-color: #6443db; /* Verde para los botones */
     color: white;
     padding: 10px 15px;
     border: none;

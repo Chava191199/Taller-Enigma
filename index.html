@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Med-Reminder - salud y bienestar</title>
+    <title>Med-Reminder - Salud y Bienestar</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>Med-Reminder</h1>
-        <img src="img/logo2.jpeg" alt="Logo Infinity Technology" style="width: 150px; height: auto;">
+        <img src="img/logo2.jpeg" alt="Logo Med-Reminder" style="width: 150px; height: auto;">
     </header>
 
     <div id="login">
@@ -22,9 +22,8 @@
             <input type="password" id="loginPassword" name="loginPassword" required>
 
             <button type="submit">Iniciar Sesión</button>
-            <button onclick="showRegister()">¿No tienes una cuenta? Regístrate</button>
+            <button type="button" onclick="showRegister()">¿No tienes una cuenta? Regístrate</button>
         </form>
-  
     </div>
 
     <div id="register" style="display:none;">
@@ -44,7 +43,7 @@
 
             <button type="submit">Registrarse</button>
         </form>
-        <button onclick="showLogin()">¿Ya tienes una cuenta? Iniciar Sesión</button>
+        <button type="button" onclick="showLogin()">¿Ya tienes una cuenta? Iniciar Sesión</button>
     </div>
 
     <div id="dashboard" style="display:none;">
@@ -58,17 +57,26 @@
                 <label for="medName">Nombre del Medicamento:</label>
                 <input type="text" id="medName" name="medName" required>
 
-                <label for="medDose">Dosis (mg/ml):</label>
+                <label for="medDose">Pastillas:</label>
                 <input type="number" id="medDose" name="medDose" required>
 
                 <label for="medFrequency">Cada cuántas horas:</label>
-                <input type="number" id="medFrequency" name="medFrequency" required>
+                <select id="medFrequency" name="medFrequency" required>
+                    <option value="6">6 horas</option>
+                    <option value="7">7 horas</option>
+                    <option value="8">8 horas</option>
+                    <option value="12">12 horas</option>
+                    <option value="24">24 horas</option>
+                </select>
 
                 <label for="medDuration">Por cuántos días:</label>
                 <input type="number" id="medDuration" name="medDuration" required>
 
                 <label for="medDate">Fecha de Inicio:</label>
                 <input type="date" id="medDate" name="medDate" required>
+
+                <label for="medTime">Hora de Inicio:</label>
+                <input type="time" id="medTime" name="medTime" required>
 
                 <button type="submit">Registrar Medicamento</button>
             </form>
@@ -83,3 +91,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

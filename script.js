@@ -46,11 +46,7 @@ function showLogin() {
 // ---------- Control del Dispensador ----------
 function toggleDispenser() {
     let btn = document.getElementById("dispenserBtn");
-    if (btn.innerText === "Activar Dispensador") {
-        btn.innerText = "Desactivar Dispensador";
-    } else {
-        btn.innerText = "Activar Dispensador";
-    }
+    btn.innerText = btn.innerText === "Activar Dispensador" ? "Desactivar Dispensador" : "Activar Dispensador";
 }
 
 // ---------- Administración de Medicamentos ----------
@@ -66,16 +62,25 @@ document.getElementById("medForm").addEventListener("submit", function(event) {
 
     let medName = document.getElementById("medName").value;
     let medDose = document.getElementById("medDose").value;
-    let medFrequency = document.getElementById("medFrequency").value;
+    let medFrequency = parseInt(document.getElementById("medFrequency").value); // Frecuencia en horas
     let medDuration = document.getElementById("medDuration").value;
     let medDate = document.getElementById("medDate").value;
+    let medTime = document.getElementById("medTime").value;
+
+    // Crear un objeto de fecha y hora de inicio
+    let startDateTime = new Date(`${medDate}T${medTime}`);
+
+    // Calcular la hora de la siguiente dosis sumando la frecuencia
+    let nextDoseTime = new Date(startDateTime);
+    nextDoseTime.setHours(nextDoseTime.getHours() + medFrequency);
 
     let medication = {
         name: medName,
         dose: medDose,
         frequency: medFrequency,
         duration: medDuration,
-        startDate: medDate
+        startDateTime: startDateTime,
+        nextDoseTime: nextDoseTime
     };
 
     medicationList.push(medication);
@@ -87,12 +92,9 @@ function updateMedicationHistory() {
     let historyList = document.getElementById("historyList");
     historyList.innerHTML = "";
 
-    medicationList.forEach((med, index) => {
-        let nextDoseTime = new Date(med.startDate);
-        nextDoseTime.setHours(nextDoseTime.getHours() + (med.frequency * Math.floor((new Date() - nextDoseTime) / (1000 * 60 * 60)) % med.frequency));
-
+    medicationList.forEach((med) => {
         let listItem = document.createElement("li");
-        listItem.innerText = `${med.name} - Dosis: ${med.dose}mg - Próxima Dosis a las: ${nextDoseTime.toLocaleTimeString()}`;
+        listItem.innerText = `${med.name} - Pastillas: ${med.dose} - Próxima Dosis: ${med.nextDoseTime.toLocaleString()}`;
         historyList.appendChild(listItem);
     });
 }

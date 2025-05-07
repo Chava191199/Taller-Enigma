@@ -1,73 +1,94 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  color: #222;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+const board = document.getElementById("board");
+const status = document.getElementById("status");
+const restartBtn = document.getElementById("restartBtn");
+const modeSelector = document.getElementById("mode");
+
+let cells;
+let currentPlayer = "X";
+let gameActive = true;
+let mode = 2; // Default: 2 players
+let boardState = Array(9).fill("");
+
+const winningCombos = [
+  [0,1,2], [3,4,5], [6,7,8], // rows
+  [0,3,6], [1,4,7], [2,5,8], // columns
+  [0,4,8], [2,4,6]           // diagonals
+];
+
+function createBoard() {
+  board.innerHTML = "";
+  boardState = Array(9).fill("");
+  for (let i = 0; i < 9; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    cell.dataset.index = i;
+    cell.addEventListener("click", handleClick);
+    board.appendChild(cell);
+  }
+  cells = document.querySelectorAll(".cell");
+  currentPlayer = "X";
+  gameActive = true;
+  status.textContent = `Turno de ${currentPlayer}`;
 }
 
-.container {
-  text-align: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+function handleClick(e) {
+  const index = e.target.dataset.index;
+  if (!gameActive || boardState[index] !== "") return;
+
+  boardState[index] = currentPlayer;
+  e.target.textContent = currentPlayer;
+
+  if (checkWinner(currentPlayer)) {
+    status.textContent = `¡${currentPlayer} gana!`;
+    gameActive = false;
+    return;
+  } else if (boardState.every(cell => cell !== "")) {
+    status.textContent = "Empate";
+    gameActive = false;
+    return;
+  }
+
+  currentPlayer = currentPlayer === "X" ? "O" : "X";
+  status.textContent = `Turno de ${currentPlayer}`;
+
+  if (mode === 1 && currentPlayer === "O" && gameActive) {
+    setTimeout(cpuMove, 300);
+  }
 }
 
-.mode-selector {
-  margin-bottom: 15px;
+function checkWinner(player) {
+  return winningCombos.some(combo =>
+    combo.every(index => boardState[index] === player)
+  );
 }
 
-.board {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  gap: 5px;
-  margin: 0 auto 15px;
+function cpuMove() {
+  const emptyIndices = boardState
+    .map((val, idx) => val === "" ? idx : null)
+    .filter(idx => idx !== null);
+
+  const randomIndex = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+  boardState[randomIndex] = "O";
+  cells[randomIndex].textContent = "O";
+
+  if (checkWinner("O")) {
+    status.textContent = "¡O gana!";
+    gameActive = false;
+    return;
+  } else if (boardState.every(cell => cell !== "")) {
+    status.textContent = "Empate";
+    gameActive = false;
+    return;
+  }
+
+  currentPlayer = "X";
+  status.textContent = `Turno de ${currentPlayer}`;
 }
 
-.cell {
-  width: 100px;
-  height: 100px;
-  background-color: #ddd;
-  font-size: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 8px;
-  user-select: none;
-  transition: background-color 0.2s;
-}
+restartBtn.addEventListener("click", createBoard);
+modeSelector.addEventListener("change", () => {
+  mode = parseInt(modeSelector.value);
+  createBoard();
+});
 
-.cell:hover {
-  background-color: #ccc;
-}
-
-.cell:empty {
-  color: #222;
-}
-
-.cell:contains("X") {
-  color: #0077ff;
-}
-
-.cell:contains("O") {
-  color: #ff4444;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #0077ff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #005ec4;
-}
+createBoard();

@@ -1,100 +1,73 @@
-// ---------- Inicio de Sesión ----------
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    document.getElementById("login").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-});
-
-// ---------- Registro de Usuario ----------
-let userList = [];
-
-document.getElementById("registerForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    let username = document.getElementById("username").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-    let confirmPassword = document.getElementById("confirmPassword").value;
-
-    if (password !== confirmPassword) {
-        alert("Las contraseñas no coinciden");
-        return;
-    }
-
-    let user = {
-        username: username,
-        email: email,
-        password: password
-    };
-
-    userList.push(user);
-    document.getElementById("registerForm").reset();
-    alert("Usuario registrado con éxito. Por favor, inicia sesión.");
-    showLogin();
-});
-
-function showRegister() {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("register").style.display = "block";
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-function showLogin() {
-    document.getElementById("login").style.display = "block";
-    document.getElementById("register").style.display = "none";
+.container {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-// ---------- Control del Dispensador ----------
-function toggleDispenser() {
-    let btn = document.getElementById("dispenserBtn");
-    btn.innerText = btn.innerText === "Activar Dispensador" ? "Desactivar Dispensador" : "Activar Dispensador";
+.mode-selector {
+  margin-bottom: 15px;
 }
 
-// ---------- Administración de Medicamentos ----------
-function toggleMedicationForm() {
-    let form = document.getElementById("medication-form");
-    form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 5px;
+  margin: 0 auto 15px;
 }
 
-let medicationList = [];
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #ddd;
+  font-size: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  user-select: none;
+  transition: background-color 0.2s;
+}
 
-document.getElementById("medForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+.cell:hover {
+  background-color: #ccc;
+}
 
-    let medName = document.getElementById("medName").value;
-    let medDose = document.getElementById("medDose").value;
-    let medFrequency = parseInt(document.getElementById("medFrequency").value); // Frecuencia en horas
-    let medDuration = document.getElementById("medDuration").value;
-    let medDate = document.getElementById("medDate").value;
-    let medTime = document.getElementById("medTime").value;
+.cell:empty {
+  color: #222;
+}
 
-    // Crear un objeto de fecha y hora de inicio
-    let startDateTime = new Date(`${medDate}T${medTime}`);
+.cell:contains("X") {
+  color: #0077ff;
+}
 
-    // Calcular la hora de la siguiente dosis sumando la frecuencia
-    let nextDoseTime = new Date(startDateTime);
-    nextDoseTime.setHours(nextDoseTime.getHours() + medFrequency);
+.cell:contains("O") {
+  color: #ff4444;
+}
 
-    let medication = {
-        name: medName,
-        dose: medDose,
-        frequency: medFrequency,
-        duration: medDuration,
-        startDateTime: startDateTime,
-        nextDoseTime: nextDoseTime
-    };
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-    medicationList.push(medication);
-    document.getElementById("medForm").reset();
-    updateMedicationHistory();
-});
-
-function updateMedicationHistory() {
-    let historyList = document.getElementById("historyList");
-    historyList.innerHTML = "";
-
-    medicationList.forEach((med) => {
-        let listItem = document.createElement("li");
-        listItem.innerText = `${med.name} - Pastillas: ${med.dose} - Próxima Dosis: ${med.nextDoseTime.toLocaleString()}`;
-        historyList.appendChild(listItem);
-    });
+button:hover {
+  background-color: #005ec4;
 }

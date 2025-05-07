@@ -5,8 +5,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
+  padding: 10px;
 }
 
 .container {
@@ -14,7 +15,13 @@ body {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2rem;
 }
 
 .mode-selector {
@@ -23,16 +30,16 @@ body {
 
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
+  grid-template-columns: repeat(3, 1fr);
   gap: 5px;
   margin: 0 auto 15px;
+  width: 100%;
 }
 
 .cell {
-  width: 100px;
-  height: 100px;
+  aspect-ratio: 1 / 1;
   background-color: #ddd;
-  font-size: 48px;
+  font-size: clamp(2rem, 8vw, 3rem);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,21 +53,9 @@ body {
   background-color: #ccc;
 }
 
-.cell:empty {
-  color: #222;
-}
-
-.cell:contains("X") {
-  color: #0077ff;
-}
-
-.cell:contains("O") {
-  color: #ff4444;
-}
-
 button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 1rem;
   background-color: #0077ff;
   color: white;
   border: none;
@@ -71,3 +66,18 @@ button {
 button:hover {
   background-color: #005ec4;
 }
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+

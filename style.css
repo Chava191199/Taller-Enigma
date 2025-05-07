@@ -1,121 +1,73 @@
-
 body {
-    font-family: Arial, sans-serif;
-    background-color: #6276eaaa; /* Blanco para el fondo */
-    color: #000000; /* Negro para el texto */
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 20px;
+.container {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    color: #ef1313dd; /* Rojo para el logo */
+.mode-selector {
+  margin-bottom: 15px;
 }
 
-h2, h3, h4 {
-    color: #000000; /* Negro para los títulos */
-    text-align: center;
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 5px;
+  margin: 0 auto 15px;
 }
 
-form {
-    background-color: #ffffff; /* Blanco para el fondo del formulario */
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    max-width: 400px;
-    width: 90%;
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #ddd;
+  font-size: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  user-select: none;
+  transition: background-color 0.2s;
 }
 
-label {
-    display: block;
-    margin: 10px 0 5px;
-    color: #000000; /* Negro para etiquetas */
+.cell:hover {
+  background-color: #ccc;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="date"] {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.cell:empty {
+  color: #222;
+}
+
+.cell:contains("X") {
+  color: #0077ff;
+}
+
+.cell:contains("O") {
+  color: #ff4444;
 }
 
 button {
-    background-color: #1396ca; /* Rojo para los botones */
-    color: #ffffff; /* Blanco para el texto del botón */
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 95%;
-    margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #19d0d0; /* Rojo más oscuro al pasar el mouse */
+  background-color: #005ec4;
 }
-
-/* Botón "¿No tienes una cuenta? Regístrate" */
-#loginForm + button {
-    margin-top: 15px;
-    background-color: transparent;
-    color: #ff0000;
-    border: none;
-    text-align: center;
-    width: 100%;
-    cursor: pointer;
-}
-
-#loginForm + button:hover {
-    color: #cc0000;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#medication-form {
-    margin-top: 20px;
-}
-
-#dispenserBtn {
-    margin-top: 20px;
-    display: block;
-}
-
-/* Media Queries para Responsividad */
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    h2, h3 {
-        font-size: 20px;
-    }
-
-    form {
-        padding: 15px;
-    }
-
-    button {
-        padding: 8px;
-    }
-}
-

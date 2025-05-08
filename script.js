@@ -1,94 +1,112 @@
-const board = document.getElementById("board");
-const status = document.getElementById("status");
-const restartBtn = document.getElementById("restartBtn");
-const modeSelector = document.getElementById("mode");
+const pantallaInicio = document.getElementById("pantalla-inicio");
+const pantallaModo = document.getElementById("pantalla-modo");
+const pantallaJuego = document.getElementById("pantalla-juego");
+const tablero = document.getElementById("tablero");
+const estado = document.getElementById("estado");
 
-let cells;
-let currentPlayer = "X";
-let gameActive = true;
-let mode = 2; // Default: 2 players
-let boardState = Array(9).fill("");
+let modo = 2;
+let tableroEstado = Array(9).fill("");
+let jugadorActual = "X";
+let activo = true;
+let celdas = [];
 
-const winningCombos = [
-  [0,1,2], [3,4,5], [6,7,8], // rows
-  [0,3,6], [1,4,7], [2,5,8], // columns
-  [0,4,8], [2,4,6]           // diagonals
+const combinacionesGanadoras = [
+  [0,1,2], [3,4,5], [6,7,8],
+  [0,3,6], [1,4,7], [2,5,8],
+  [0,4,8], [2,4,6]
 ];
 
-function createBoard() {
-  board.innerHTML = "";
-  boardState = Array(9).fill("");
+function mostrarPantalla(nombre) {
+  pantallaInicio.classList.add("hidden");
+  pantallaModo.classList.add("hidden");
+  pantallaJuego.classList.add("hidden");
+
+  if (nombre === "modo") pantallaModo.classList.remove("hidden");
+  if (nombre === "juego") pantallaJuego.classList.remove("hidden");
+}
+
+function iniciarJuego(modoSeleccionado) {
+  modo = modoSeleccionado;
+  mostrarPantalla("juego");
+  crearTablero();
+}
+
+function crearTablero() {
+  tablero.innerHTML = "";
+  tableroEstado = Array(9).fill("");
+  jugadorActual = "X";
+  activo = true;
+  estado.textContent = `Turno de ${jugadorActual}`;
+
   for (let i = 0; i < 9; i++) {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
-    cell.dataset.index = i;
-    cell.addEventListener("click", handleClick);
-    board.appendChild(cell);
+    const celda = document.createElement("div");
+    celda.classList.add("cell");
+    celda.dataset.index = i;
+    celda.addEventListener("click", manejarClick);
+    tablero.appendChild(celda);
   }
-  cells = document.querySelectorAll(".cell");
-  currentPlayer = "X";
-  gameActive = true;
-  status.textContent = `Turno de ${currentPlayer}`;
+
+  celdas = document.querySelectorAll(".cell");
 }
 
-function handleClick(e) {
+function manejarClick(e) {
   const index = e.target.dataset.index;
-  if (!gameActive || boardState[index] !== "") return;
+  if (!activo || tableroEstado[index] !== "") return;
 
-  boardState[index] = currentPlayer;
-  e.target.textContent = currentPlayer;
+  tableroEstado[index] = jugadorActual;
+  e.target.textContent = jugadorActual;
 
-  if (checkWinner(currentPlayer)) {
-    status.textContent = `¡${currentPlayer} gana!`;
-    gameActive = false;
-    return;
-  } else if (boardState.every(cell => cell !== "")) {
-    status.textContent = "Empate";
-    gameActive = false;
+  if (verificarGanador(jugadorActual)) {
+    estado.textContent = `¡${jugadorActual} gana!`;
+    activo = false;
     return;
   }
 
-  currentPlayer = currentPlayer === "X" ? "O" : "X";
-  status.textContent = `Turno de ${currentPlayer}`;
+  if (tableroEstado.every(cell => cell !== "")) {
+    estado.textContent = "Empate";
+    activo = false;
+    return;
+  }
 
-  if (mode === 1 && currentPlayer === "O" && gameActive) {
-    setTimeout(cpuMove, 300);
+  jugadorActual = jugadorActual === "X" ? "O" : "X";
+  estado.textContent = `Turno de ${jugadorActual}`;
+
+  if (modo === 1 && jugadorActual === "O" && activo) {
+    setTimeout(movimientoCPU, 300);
   }
 }
 
-function checkWinner(player) {
-  return winningCombos.some(combo =>
-    combo.every(index => boardState[index] === player)
+function verificarGanador(jugador) {
+  return combinacionesGanadoras.some(combo =>
+    combo.every(index => tableroEstado[index] === jugador)
   );
 }
 
-function cpuMove() {
-  const emptyIndices = boardState
+function movimientoCPU() {
+  const vacías = tableroEstado
     .map((val, idx) => val === "" ? idx : null)
     .filter(idx => idx !== null);
 
-  const randomIndex = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
-  boardState[randomIndex] = "O";
-  cells[randomIndex].textContent = "O";
+  const random = vacías[Math.floor(Math.random() * vacías.length)];
+  tableroEstado[random] = "O";
+  celdas[random].textContent = "O";
 
-  if (checkWinner("O")) {
-    status.textContent = "¡O gana!";
-    gameActive = false;
-    return;
-  } else if (boardState.every(cell => cell !== "")) {
-    status.textContent = "Empate";
-    gameActive = false;
+  if (verificarGanador("O")) {
+    estado.textContent = "¡O gana!";
+    activo = false;
     return;
   }
 
-  currentPlayer = "X";
-  status.textContent = `Turno de ${currentPlayer}`;
+  if (tableroEstado.every(cell => cell !== "")) {
+    estado.textContent = "Empate";
+    activo = false;
+    return;
+  }
+
+  jugadorActual = "X";
+  estado.textContent = `Turno de ${jugadorActual}`;
 }
 
-restartBtn.addEventListener("click", createBoard);
-modeSelector.addEventListener("change", () => {
-  mode = parseInt(modeSelector.value);
-  createBoard();
-});
-
-createBoard();
+function reiniciarJuego() {
+  crearTablero();
+}

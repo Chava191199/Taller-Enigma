@@ -8,25 +8,29 @@
 </head>
 <body>
   <div class="container">
-    <h1>3 en Raya</h1>
-
-    <div class="mode-selector">
-      <label for="mode">Modo:</label>
-      <select id="mode">
-        <option value="2">2 Jugadores</option>
-        <option value="1">1 Jugador (vs CPU)</option>
-      </select>
+    <!-- Pantalla de inicio -->
+    <div id="pantalla-inicio">
+      <h1>3 en Raya</h1>
+      <button onclick="mostrarPantalla('modo')">Comenzar</button>
     </div>
 
-    <div id="board" class="board"></div>
+    <!-- Pantalla selección de modo -->
+    <div id="pantalla-modo" class="hidden">
+      <h1>Elige el modo de juego</h1>
+      <button onclick="iniciarJuego(1)">1 Jugador (vs CPU)</button>
+      <button onclick="iniciarJuego(2)">2 Jugadores</button>
+    </div>
 
-    <p id="status">Turno de X</p>
-
-    <button id="restartBtn">Reiniciar</button>
+    <!-- Pantalla de juego -->
+    <div id="pantalla-juego" class="hidden">
+      <h1>3 en Raya</h1>
+      <div id="tablero" class="board"></div>
+      <p id="estado">Turno de X</p>
+      <button onclick="reiniciarJuego()">Reiniciar</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
 

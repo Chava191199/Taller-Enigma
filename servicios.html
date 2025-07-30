@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios - Taller Enigma</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <script defer src="login.js"></script>
+</head>
+<body>
+<header>
+
+  <!-- NUEVO: Nombre del taller centrado arriba del navbar -->
+  <div class="titulo-taller">
+    <h1>Taller Enigma</h1>
+  </div>
+
+  <!-- Ya existente: barra de navegación -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="index.html"><img src="img/logo.png" alt="Logo" class="logo" /></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="facturacion.html">Facturación</a></li>
+      <li><a href="cita.html">Agendar Cita</a></li>
+      <li><a href="atencion.html">Atención al Cliente</a></li>
+      <li><a href="login.html">Iniciar Sesión</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="bienvenida">
+    <h1>Servicios de Mantenimiento</h1>
+  </section>
+  <div class="images">
+    <div class="image-box">
+      <img src="img/imagen taller 1.jpg" alt="Taller 1" />
+      <p>Área de mantenimiento preventivo con herramientas de última generación.</p>
+    </div>
+    <div class="image-box">
+      <img src="img/imagen taller 2.jpg" alt="Taller 2" />
+      <p>Zona de reparación de motores con técnicos altamente capacitados.</p>
+    </div>
+    <div class="image-box">
+      <img src="img/imagen taller 3.jpg" alt="Taller 3" />
+      <p>Estación de soldadura y estructuras metálicas industriales.</p>
+    </div>
+    <div class="image-box">
+  <img src="img/imagen taller 4.webp" alt="Taller 4" />
+  <p>Diagnóstico computarizado para detectar fallas en tiempo real.</p>
+</div>
+<div class="image-box">
+  <img src="img/imagen taller 5.jpeg" alt="Taller 5" />
+  <p>Revisión y cambio de sistemas de suspensión para autos y camiones.</p>
+</div>
+<div class="image-box">
+  <img src="img/imagen taller 6.jpg " alt="Taller 6" />
+  <p>Instalación de sistemas hidráulicos para maquinaria industrial.</p>
+</div>
+<div class="image-box">
+  <img src="img/imagen taller 7.jpg" alt="Taller 7" />
+  <p>Reparación y mantenimiento de transmisiones manuales y automáticas.</p>
+</div>
+<div class="image-box">
+  <img src="img/imagen taller 8.jpg" alt="Taller 8" />
+  <p>Servicio de alineación y balanceo con tecnología de precisión.</p>
+</div>
+<div class="image-box">
+  <img src="img/imagen taller 9.jpg" alt="Taller 9" />
+  <p>Mantenimiento eléctrico para equipos industriales de alto voltaje.</p>
+</div>
+<div class="image-box">
+  <img src="img/imagen taller 10.webp" alt="Taller 10" />
+  <p>Rectificación de motores a gasolina y diésel para flotillas.</p>
+</div>
+<div class="image-box">
+  <img src="img/imagen taller 11.webp" alt="Taller 11" />
+  <p>Calibración y afinación de maquinaria CNC y herramientas automatizadas.</p>
+</div>
+<div class="image-box">
+  <img src="img/imagen taller 12.jpg" alt="Taller 12" />
+  <p>Servicio integral de frenos, discos, pastillas y líquidos hidráulicos.</p>
+</div>
+  </div>
+</main>
+
+<!-- Modal Login -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarLogin()">&times;</span>
+    <h2>Iniciar Sesión</h2>
+    <form onsubmit="event.preventDefault(); validarLogin();">
+      <input type="text" id="usuario" placeholder="Usuario" required />
+      <input type="password" id="password" placeholder="Contraseña" required />
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Taller Enigma. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>

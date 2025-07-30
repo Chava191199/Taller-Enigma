@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperar Contraseña - Taller Enigma</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <script defer>
+    function recuperarContrasena(event) {
+      event.preventDefault();
+      const correo = document.getElementById("correo").value.trim();
+
+      if (correo) {
+        alert("Se ha enviado un enlace para recuperar la contraseña a tu correo.");
+        window.location.href = "login.html";
+      } else {
+        alert("Por favor, ingresa tu correo electrónico");
+      }
+    }
+  </script>
+</head>
+<body>
+<header>
+
+  <!-- NUEVO: Nombre del taller centrado arriba del navbar -->
+  <div class="titulo-taller">
+    <h1>Taller Enigma</h1>
+  </div>
+
+  <!-- Ya existente: barra de navegación -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="index.html"><img src="img/logo.png" alt="Logo" class="logo" /></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="facturacion.html">Facturación</a></li>
+      <li><a href="cita.html">Agendar Cita</a></li>
+      <li><a href="atencion.html">Atención al Cliente</a></li>
+      <li><a href="login.html">Iniciar Sesión</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Recuperar Contraseña</h1>
+  <form onsubmit="recuperarContrasena(event)">
+    <input type="email" id="correo" placeholder="Correo electrónico" required />
+    <button type="submit">Enviar enlace</button>
+  </form>
+</main>
+
+<footer>
+  <p>&copy; 2025 Taller Enigma</p>
+</footer>
+</body>
+</html>

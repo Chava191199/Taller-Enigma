@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - Taller Enigma</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <script defer>
+    function registrarUsuario(event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const correo = document.getElementById("correo").value.trim();
+      const contrasena = document.getElementById("contrasena").value.trim();
+
+      if (nombre && correo && contrasena) {
+        alert("Registro exitoso");
+        window.location.href = "login.html";
+      } else {
+        alert("Por favor, llena todos los campos");
+      }
+    }
+  </script>
+</head>
+<body>
+<header>
+
+  <!-- NUEVO: Nombre del taller centrado arriba del navbar -->
+  <div class="titulo-taller">
+    <h1>Taller Enigma</h1>
+  </div>
+
+  <!-- Ya existente: barra de navegación -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="index.html"><img src="img/logo.png" alt="Logo" class="logo" /></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="facturacion.html">Facturación</a></li>
+      <li><a href="cita.html">Agendar Cita</a></li>
+      <li><a href="atencion.html">Atención al Cliente</a></li>
+      <li><a href="login.html">Iniciar Sesión</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Registro de Usuario</h1>
+  <form onsubmit="registrarUsuario(event)">
+    <input type="text" id="nombre" placeholder="Nombre completo" required />
+    <input type="email" id="correo" placeholder="Correo electrónico" required />
+    <input type="password" id="contrasena" placeholder="Contraseña" required />
+    <button type="submit">Registrar</button>
+  </form>
+</main>
+
+<footer>
+  <p>&copy; 2025 Taller Enigma</p>
+</footer>
+</body>
+</html>
